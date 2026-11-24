@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0F1A33">
+  <title>Режим лікарняного</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Lora:wght@600;700&family=Nunito:wght@400;600;700;800&subset=cyrillic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-pattern" aria-hidden="true"></div>
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Особлива операційна панель</p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="pageSubtitle"></p>
+        <button class="primary-button" id="startButton"></button>
+      </div>
+      <aside class="status-card" aria-label="Статус режиму">
+        <div class="status-head"><span class="status-dot"></span><span>Системи спокою</span></div>
+        <ul id="statusList"></ul>
+      </aside>
+    </section>
+
+    <section class="section" id="progress">
+      <div class="section-heading">
+        <div><p class="eyebrow">Щоденні досягнення</p><h2><span id="progressLabel"></span>: <span id="progressValue">0%</span></h2></div>
+      </div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
+      <div class="achievement-grid" id="achievementGrid"></div>
+    </section>
+
+    <section class="section" id="timerSection">
+      <div class="section-heading"><div><p class="eyebrow">Перегляди і відпочинок</p><h2>Таймер настрою</h2></div></div>
+      <div class="timer-card">
+        <div class="preset-list" id="presetList" role="list"></div>
+        <div class="timer-main">
+          <div class="cup-wrap" id="cupWrap" aria-hidden="true">
+            <svg class="cup" viewBox="0 0 150 130">
+              <path d="M38 38h74v35c0 29-16 43-37 43S38 102 38 73V38Z" fill="#6C8FD6" stroke="#23408E" stroke-width="5"/>
+              <path d="M112 52h9c17 0 17 38-11 38" fill="none" stroke="#23408E" stroke-width="5"/>
+              <ellipse cx="75" cy="38" rx="37" ry="10" fill="#FBFAF6" stroke="#23408E" stroke-width="5"/>
+              <path d="M57 27c-12-14 8-17 0-30M78 27c-12-14 8-17 0-30M99 27c-12-14 8-17 0-30" fill="none" stroke="#6C8FD6" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="timer-display" id="timerDisplay">03:00</div>
+          <div class="custom-time" id="customTime">
+            <button type="button" id="timeDecrease" aria-label="Зменшити час">−</button>
+            <label><input id="timerMinutes" type="number" min="1" max="240" value="20"><span id="customMinutesLabel"></span></label>
+            <button type="button" id="timeIncrease" aria-label="Збільшити час">+</button>
+          </div>
+          <p class="timer-step" id="timerStep"></p>
+          <div class="timer-actions">
+            <button class="primary-button" id="timerStart"></button>
+            <button class="secondary-button" id="timerPause"></button>
+            <button class="ghost-button" id="timerReset"></button>
+          </div>
+          <label class="sound-toggle"><input type="checkbox" id="soundToggle"><span></span><b id="soundLabel"></b></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cookieSection">
+      <div class="section-heading"><div><p class="eyebrow">Маленьке передбачення</p><h2>Печиво настрою</h2></div></div>
+      <div class="cookie-card">
+        <button class="cookie-button" id="cookieButton" aria-label="Торкнись печива">
+          <span class="cookie-half left"></span><span class="cookie-half right"></span>
+          <span class="cookie-crack"></span>
+        </button>
+        <p class="cookie-hint" id="cookieHint"></p>
+        <div class="fortune-paper" id="fortunePaper" hidden><span class="personal-label" id="personalLabel" hidden></span><p id="fortuneText"></p></div>
+        <button class="secondary-button another-button" id="anotherCookie" hidden></button>
+      </div>
+    </section>
+
+    <section class="section" id="gameSection">
+      <div class="section-heading"><div><p class="eyebrow">Мінігра</p><h2 id="gameTitle"></h2></div></div>
+      <div class="game-card">
+        <canvas id="gameCanvas" width="360" height="640" aria-label="Лютик ловить ромашки"></canvas>
+        <div class="game-overlay" id="gameOverlay">
+          <div class="game-start" id="gameStart">
+            <h3 id="gameOverlayTitle"></h3>
+            <p id="gameHowTo"></p>
+            <button class="primary-button" id="gameStartButton"></button>
+          </div>
+          <div class="game-end" id="gameEnd" hidden>
+            <p class="game-end-label" id="scoreLabel"></p><strong id="gameScore">0</strong>
+            <p class="game-end-label" id="bestLabel"></p><strong id="gameBest">0</strong>
+            <p class="game-over-line" id="gameOverLine"></p>
+            <button class="primary-button" id="gameAgainButton"></button>
+          </div>
+        </div>
+        <div class="game-controls">
+          <button id="moveLeft" aria-label="Лютик ліворуч">← <span id="leftLabel"></span></button>
+          <button id="moveRight" aria-label="Лютик праворуч"><span id="rightLabel"></span> →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section extras" id="foodSection">
+      <article class="food-card">
+        <div><p class="eyebrow">Сьогоднішній вибір</p><h2>Що з’їсти?</h2></div>
+        <button class="primary-button" id="foodButton"></button>
+        <p class="food-prefix" id="foodPrefix"></p>
+        <p class="food-result" id="foodResult" aria-live="polite"></p>
+        <p class="food-rejected" id="foodRejected"></p>
+      </article>
+      <div class="daisy-cluster" aria-hidden="true"><i></i><i></i><i></i></div>
+    </section>
+
+    <section class="section note-section" id="noteSection" hidden>
+      <p class="eyebrow">Коротка записка</p>
+      <blockquote id="noteText"></blockquote>
+    </section>
+  </main>
+
+  <button class="cat-button" id="catButton" aria-label="Буся">
+    <svg viewBox="0 0 110 76" aria-hidden="true">
+      <path d="M24 55c0-23 13-38 33-38s33 15 33 38v12H24Z" fill="#B6C8EA" stroke="#23408E" stroke-width="4"/>
+      <path d="m37 25 4-16 15 13m21 3-4-16-15 13" fill="#B6C8EA" stroke="#23408E" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M48 39c3-4 9-4 12 0m8 0c3-4 9-4 12 0" fill="none" stroke="#23408E" stroke-width="3" stroke-linecap="round"/>
+      <path d="M64 45c2 3 2 5 0 7m-7 0h14" fill="none" stroke="#23408E" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M90 55c10-2 17 4 12 11H90" fill="#B6C8EA" stroke="#23408E" stroke-width="4"/>
+    </svg>
+  </button>
+  <div class="cat-bubble" id="catBubble" hidden></div>
+
+  <footer>
+    <span id="footerText"></span><b id="signatureText"></b>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
